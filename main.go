@@ -11,7 +11,7 @@ import (
 
 func main() {
 	nosave := 0
-	fmt.Println("Loading...")
+	fmt.Println("LoadingA...")
 	for i := 0; i < len(os.Args); i++ {
 		//fmt.Println(os.Args[i])
 		if os.Args[i] == "--nosave" || os.Args[i] == "-n" {
@@ -29,11 +29,12 @@ func main() {
 
 			os.Exit(0)
 		}
+		fmt.Println("Done")
 	}
 	if _, err := os.Stat(os.Getenv("HOME") + "/.config/termgame/gamesav.var"); err != nil && nosave == 0 {
 		fmt.Println("no game save found, creating save file...")
 		_, err = exec.Command("mkdir", os.Getenv("HOME")+"/.config/termgame/", "-p").Output()
-		fmt.Println(err)
+		//fmt.Println(err)
 		_, err := os.Create(os.Getenv("HOME") + "/.config/termgame/gamesav.var")
 		//save.WriteString("Platform=" + runtime.GOOS)
 		if err != nil {
@@ -42,6 +43,9 @@ func main() {
 		} else {
 			fmt.Println("Successfully created save file!")
 		}
-		fmt.Println("Starting game...")
+
 	}
+	fmt.Print("Starting game...")
+	fmt.Println("Started")
+	lhome()
 }
